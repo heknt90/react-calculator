@@ -46,8 +46,8 @@ export default function Calculator() {
 
         <div className="calculator__controls">
           <div style={{ gridColumn: "2" }}></div>
-          <CalculatorButton label="C" clickHandler={clearButtonHandler} />
-          <CalculatorButton label="Del" clickHandler={deleteLastCharHandler} />
+          <CalculatorButton label="C" clickHandler={clearButtonHandler} classList="calculator__button_del" />
+          <CalculatorButton label="Del" clickHandler={deleteLastCharHandler} classList="calculator__button_clear" />
 
           <CalculatorButton label="(" clickHandler={addCharToExpressionHandler} />
           <CalculatorButton label=")" clickHandler={addCharToExpressionHandler} />
@@ -72,7 +72,7 @@ export default function Calculator() {
           <CalculatorButton label="+/-" clickHandler={changeSignHandler} />
           <CalculatorButton label="0" clickHandler={addCharToExpressionHandler} />
           <CalculatorButton label="," clickHandler={addCharToExpressionHandler} />
-          <CalculatorButton label="=" clickHandler={resultButtonHandler} />
+          <CalculatorButton label="=" clickHandler={resultButtonHandler} classList="calculator__button_match" />
         </div>
       </div>
     </div>

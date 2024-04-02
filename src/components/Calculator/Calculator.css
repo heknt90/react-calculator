@@ -46,6 +46,33 @@
   cursor: pointer;
 }
 
+.calculator__button_del {
+  background-color: palevioletred;
+  color: #fff;
+}
+
+.calculator__button_del:hover {
+  background-color: rgb(209, 78, 122);
+}
+
+.calculator__button_clear {
+  background-color: rgb(255, 59, 141);
+  color: #fff;
+}
+
+.calculator__button_clear:hover {
+  background-color: rgb(255, 0, 106);
+}
+
+.calculator__button_match {
+  background-color: orange;
+  color: #fff;
+}
+
+.calculator__button_match:hover {
+  background-color: rgb(240, 156, 1);
+}
+
 .calculator__button:active {
   background-color: rgb(65, 65, 65);
   color: #fff;
