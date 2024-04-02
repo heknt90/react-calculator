@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import CalculatorButton from "../CalculatorButton";
 import CalculatorDisplay from "./CalculatorDisplay/CalculatorDisplay";
 

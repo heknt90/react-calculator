@@ -1,11 +1,12 @@
-export default function CalculatorDisplay({ operation }) {
+export default function CalculatorDisplay({ expression, result, history }) {
+
+  const expressionValue = (expression !== "") ? expression : 0;
+  const resultValue = (result) ? `=${result}` : "";
 
   return (
     <div className="calculator__display">
-      <span className="calculator__display-operand1">{(operation.operand1) ? operation.operand1 : "0"}</span>
-      <span className="calculator__display-operation">{(operation.operator) ? operation.operator : ""}</span>
-      <span className="calculator__display-operand2">{(operation.operand2) ? operation.operand2 : ""}</span>
-      <span className="calculator__display-result">{(operation.result) ? "=" + operation.result : ""}</span>
+      <p>{history}</p>
+      <p className="calculator__expression"><span>{expressionValue}</span><span>{resultValue}</span></p>
     </div>
   )
 }
