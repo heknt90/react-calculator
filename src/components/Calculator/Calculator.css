@@ -18,6 +18,14 @@
   color: white;
 }
 
+.calculator__expression {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
 .calculator__controls {
   padding: 0;
   display: grid;
