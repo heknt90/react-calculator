@@ -1,6 +1,6 @@
-export default function CalculatorButton({ label }) {
+export default function CalculatorButton({ label, clickHandler }) {
 
   return (
-    <button className="calculator__button">{label}</button>
+    <button className="calculator__button" onClick={() => clickHandler(label)}>{label}</button>
   )
 }
