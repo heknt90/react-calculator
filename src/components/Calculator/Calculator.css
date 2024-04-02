@@ -8,11 +8,11 @@
 }
 
 .calculator__display {
-  height: 70px;
+  height: 85px;
   margin-bottom: 18px;
-  padding: 8px;
+  padding: 10px 15px;
   background-color: rgb(95, 93, 93);
-  font-size: 20px;
+  font-size: 28px;
   text-align: right;
   vertical-align: bottom;
   color: white;
