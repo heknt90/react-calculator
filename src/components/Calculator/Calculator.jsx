@@ -1,98 +1,114 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CalculatorButton from "../CalculatorButton";
+import CalculatorDisplay from "./CalculatorDisplay/CalculatorDisplay";
+
+const initialOperation = {
+  operand1: 0,
+  operand2: 0,
+  operator: null,
+  result: null,
+};
+
+const operatorList = {
+  "x": multiplication,
+  "/": division,
+  "+": sum,
+  "-": difference,
+}
+
+function sum(operand1, operand2) {
+  return operand1 + operand2;
+}
+
+function difference(operand1, operand2) {
+  return operand1 - operand2;
+}
+
+function multiplication(operand1, operand2) {
+  return operand1 * operand2;
+}
+
+function division(operand1, operand2) {
+  return operand1 / operand2;
+}
 
 export default function Calculator() {
+  const [operation, setOperation] = useState(initialOperation);
 
-  const [display, setDisplay] = useState(0);
-  const [action, setAction] = useState({
-    operand1: 0,
-    operand2: null,
-    operation: null,
-  })
-
-  function clear() {
-    setAction({
-      operand1: 0,
-      operand2: null,
-      operation: null,
-    })
+  function concat(prev, digit) {
+    return parseFloat("" + prev + digit)
   }
 
-  function sum(operand1, operand2) {
-    return operand1 + operand2;
-  }
-
-  function difference(operand1, operand2) {
-    return operand1 - operand2;
-  }
-
-  function multiplication(operand1, operand2) {
-    return operand1 * operand2;
-  }
-
-  function division(operand1, operand2) {
-    return operand1 / operand2;
-  }
-
-  function setOperand1(operand1) {
-    setAction({ ...action, operand1 })
-  }
-
-  function setOperand2(operand2) {
-    setAction({ ...action, operand2 })
-  }
-
-  function setOperator(operator) {
-    setAction({ ...action, operator })
+  function setOperand(value, operandName) {
+    setOperation(oldOperation => {
+      const newOperation = Object.assign({}, oldOperation);
+      newOperation[operandName] = concat(newOperation[operandName], value);
+      return newOperation;
+    });
   }
 
   function clearButtonHandler() {
-
+    setOperation(prev => initialOperation);
   }
 
   function resultButtonHandler() {
-
+    const func = operatorList[operation.operator];
+    setOperation(prev => {
+      const result = func(prev.operand1, prev.operand2);
+      return ({ ...prev, result });
+    });
   }
 
-  function addOperandButtonHandler() {
-
+  function addOperandDigitButtonHandler(digit) {
+    if (!operation.result) {
+      let operandName = "operand1";
+      if (!!operation.operator) {
+        operandName = "operand2";
+      }
+      setOperand(digit, operandName);
+    }
   }
 
-  function addOperationButtonHandler() {
-
+  function setOperatorButtonHandler(operator) {
+    if (!operation.result) {
+      setOperation(prev => {
+        const newOperation = Object.assign({}, prev);
+        newOperation.operator = operator;
+        return newOperation;
+      });
+    }
   }
 
   return (
     <div>
       <div className="calculator">
-        <div className="calculator__display">{display}</div>
-        <div className="calculator__controls">
+        <CalculatorDisplay operation={operation} />
 
+        <div className="calculator__controls">
           <CalculatorButton label="(" />
           <CalculatorButton label=")" />
-          <CalculatorButton label="C" />
-          <CalculatorButton label="/" />
+          <CalculatorButton label="C" clickHandler={clearButtonHandler} />
+          <CalculatorButton label="/" clickHandler={setOperatorButtonHandler} />
 
+          <CalculatorButton label="7" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="8" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="9" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="x" clickHandler={setOperatorButtonHandler} />
 
-          <CalculatorButton label="7" />
-          <CalculatorButton label="8" />
-          <CalculatorButton label="9" />
-          <CalculatorButton label="x" />
+          <CalculatorButton label="4" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="5" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="6" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="-" clickHandler={setOperatorButtonHandler} />
 
-          <CalculatorButton label="4" />
-          <CalculatorButton label="5" />
-          <CalculatorButton label="6" />
-          <CalculatorButton label="-" />
-
-          <CalculatorButton label="1" />
-          <CalculatorButton label="2" />
-          <CalculatorButton label="3" />
-          <CalculatorButton label="+" />
+          <CalculatorButton label="1" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="2" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="3" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="+" clickHandler={setOperatorButtonHandler} />
 
           <CalculatorButton label="+/-" />
-          <CalculatorButton label="0" />
-          <CalculatorButton label="," />
-          <CalculatorButton label="=" />
+          <CalculatorButton label="0" clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="," clickHandler={addOperandDigitButtonHandler} />
+          <CalculatorButton label="=" clickHandler={resultButtonHandler} />
         </div>
       </div>
     </div>
