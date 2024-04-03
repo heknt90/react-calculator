@@ -1,23 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CalculatorButton from "../CalculatorButton";
 import CalculatorDisplay from "./CalculatorDisplay/CalculatorDisplay";
 
 export default function Calculator() {
   const [expression, setExpression] = useState("");
-  const [result, setResult] = useState(null);
   const [history, setHistory] = useState("");
 
+  useEffect(() => { }, [])
+
   function addCharToExpressionHandler(char) {
-    if (!result) {
-      if (char === "x") char = "*";
-      if (char === ",") char = ".";
-      if (char === "PI") char = Math.PI;
-      setExpression(prev => prev + char);
-    }
-  }
-
-  function changeSignHandler() {
-
+    if (char === "x") char = "*";
+    if (char === ",") char = ".";
+    if (char === "PI") char = Math.PI;
+    setExpression(prev => prev + char);
   }
 
   function deleteLastCharHandler() {
@@ -28,13 +23,14 @@ export default function Calculator() {
 
   function clearButtonHandler() {
     setExpression(prev => "");
-    setResult(prev => null);
   }
 
   function resultButtonHandler() {
     try {
       if (expression !== "" && eval(expression)) {
-        setResult(prev => eval(expression));
+        const res = eval(expression)
+        setHistory(prev => expression + "=" + res)
+        setExpression(prev => res);
       }
     } catch (e) { }
   }
@@ -42,7 +38,7 @@ export default function Calculator() {
   return (
     <div>
       <div className="calculator">
-        <CalculatorDisplay expression={expression} result={result} history={history} />
+        <CalculatorDisplay expression={expression} history={history} />
 
         <div className="calculator__controls">
           <div style={{ gridColumn: "2" }}></div>
@@ -69,7 +65,8 @@ export default function Calculator() {
           <CalculatorButton label="3" clickHandler={addCharToExpressionHandler} />
           <CalculatorButton label="+" clickHandler={addCharToExpressionHandler} />
 
-          <CalculatorButton label="+/-" clickHandler={changeSignHandler} />
+          {/* <CalculatorButton label="+/-" clickHandler={changeSignHandler} /> */}
+          <div></div>
           <CalculatorButton label="0" clickHandler={addCharToExpressionHandler} />
           <CalculatorButton label="," clickHandler={addCharToExpressionHandler} />
           <CalculatorButton label="=" clickHandler={resultButtonHandler} classList="calculator__button_match" />

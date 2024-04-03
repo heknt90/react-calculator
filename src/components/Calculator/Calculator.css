@@ -18,12 +18,18 @@
   color: white;
 }
 
+.calculator__history {
+  font-size: 14px;
+  margin: 0;
+}
+
 .calculator__expression {
   position: relative;
   overflow: hidden;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
+  margin: 0;
 }
 
 .calculator__controls {
