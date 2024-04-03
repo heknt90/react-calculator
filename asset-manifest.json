@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.350e1d3a.css",
-    "main.js": "/static/js/main.a498fed8.js",
-    "static/js/453.1d122d62.chunk.js": "/static/js/453.1d122d62.chunk.js",
-    "index.html": "/index.html",
-    "main.350e1d3a.css.map": "/static/css/main.350e1d3a.css.map",
-    "main.a498fed8.js.map": "/static/js/main.a498fed8.js.map",
-    "453.1d122d62.chunk.js.map": "/static/js/453.1d122d62.chunk.js.map"
+    "main.css": "https://heknt90.github.io/react-calculator/static/css/main.350e1d3a.css",
+    "main.js": "https://heknt90.github.io/react-calculator/static/js/main.7747c047.js",
+    "static/js/453.1d122d62.chunk.js": "https://heknt90.github.io/react-calculator/static/js/453.1d122d62.chunk.js",
+    "index.html": "https://heknt90.github.io/react-calculator/index.html",
+    "main.350e1d3a.css.map": "https://heknt90.github.io/react-calculator/static/css/main.350e1d3a.css.map",
+    "main.7747c047.js.map": "https://heknt90.github.io/react-calculator/static/js/main.7747c047.js.map",
+    "453.1d122d62.chunk.js.map": "https://heknt90.github.io/react-calculator/static/js/453.1d122d62.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.350e1d3a.css",
-    "static/js/main.a498fed8.js"
+    "static/js/main.7747c047.js"
   ]
 }
