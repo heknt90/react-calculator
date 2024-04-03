@@ -11,38 +11,11 @@ export default function Calculator() {
     if (!isKeyPressConnected) {
       const keyPressListener = document.addEventListener("keydown", (event) => {
         let key = event.key;
-        switch (key) {
-          case ".":
-          case ",":
-            key = ".";
-          case "0":
-          case "1":
-          case "2":
-          case "3":
-          case "4":
-          case "5":
-          case "6":
-          case "7":
-          case "8":
-          case "9":
-          case "+":
-          case "-":
-          case "/":
-          case "*":
-          case "(":
-          case ")":
-            addCharToExpressionHandler(key);
-            break;
-          case "Enter":
-            resultHandler(setExpression, setHistory);
-            break;
-          case "Delete":
-            clearHandler()
-            break;
-          case "Backspace":
-            deleteLastCharHandler();
-            break
-        }
+        if (key === ",") key = ".";
+        if (key === "Delete") clearHandler();
+        else if (key === "Enter") resultHandler(setExpression, setHistory);
+        else if (key === "Backspace") deleteLastCharHandler();
+        else if ([".", "+", "-", "*", "/", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "(", ")"].indexOf(key) !== -1) addCharToExpressionHandler(key);
       });
       setIsKeyPressConnected(true);
       return document.removeEventListener("keydown", keyPressListener);
