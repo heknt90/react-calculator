@@ -10,7 +10,7 @@ export default function Calculator() {
   useEffect(() => {
     if (!isKeyPressConnected) {
       const keyPressListener = document.addEventListener("keydown", (event) => {
-        const key = event.key;
+        let key = event.key;
         switch (key) {
           case ".":
           case ",":
