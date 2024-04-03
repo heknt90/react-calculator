@@ -4,14 +4,21 @@ const htmlParse = (text) => {
   return doc.body.innerText;
 }
 
-export default function CalculatorButton({ label, clickHandler, classList = "" }) {
+export default function CalculatorButton({ label, clickHandler, classList = "", setExpression = null, setHistory = null }) {
 
   const classes = ("calculator__button " + classList).trim();
   let text = label;
   if (text === "PI") text = htmlParse("&pi;");
   if (text === "/") text = htmlParse("&#247;");
 
+  let handler;
+  if (setExpression && setHistory) {
+    handler = () => clickHandler(setExpression, setHistory);
+  } else {
+    handler = () => clickHandler(label);
+  }
+
   return (
-    <button className={classes} onClick={() => clickHandler(label)}>{text}</button>
+    <button className={classes} onClick={handler}>{text}</button>
   )
 }
