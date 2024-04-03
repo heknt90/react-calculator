@@ -44,8 +44,8 @@ export default function Calculator() {
   function resultHandler(setExpression, setHistory) {
     setExpression(prevExpression => {
       try {
-        if (prevExpression !== "" && eval(prevExpression)) {
-          const res = eval(prevExpression);
+        if (prevExpression !== "" && eval(prevExpression)) { // eslint-disable-line
+          const res = eval(prevExpression); // eslint-disable-line
           setHistory(prevHistory => prevExpression + "=" + res);
           return "" + res;
         }
